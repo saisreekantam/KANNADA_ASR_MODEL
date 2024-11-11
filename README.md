@@ -92,17 +92,14 @@ The system uses OpenAI's Whisper ASR model fine-tuned on Kannada language data:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## Acknowledgments
 
 - Thanks to OpenAI for the Whisper model
 - Dataset contributors
-- [Add any other acknowledgments]
+
 
 ## Contact
 
-Your Name - email@example.com
-Project Link: https://github.com/yourusername/sandalwood-qa
+
+Project Link: https://github.com/saisreekantam/KANNADA_ASR_MODEL
+
