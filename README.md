@@ -1,38 +1,44 @@
 # KANNADA_ASR_MODEL
-# Sandalwood Knowledge QA System
+# ML Fiesta - Sandalwood Knowledge Assistant
 
-A speech-based Question Answering system for Sandalwood cultivation knowledge in Kannada language. The system uses OpenAI's Whisper ASR model fine-tuned on Kannada language for transcription and implements a semantic search to find relevant answers from an audio corpus.
-
-## Features
-
-- Real-time audio question recording
-- Support for uploading audio questions
-- Fine-tuned Whisper ASR for Kannada language
-- Semantic search for finding relevant answers
-- User-friendly Streamlit interface
-- Audio playback for answers
+A speech-based Question & Answer system for Sandalwood cultivation knowledge in Kannada language, using fine-tuned Whisper ASR model.
 
 ## Project Structure
 
 ```
-sandalwood-qa/
-├── app.py                  # Streamlit frontend
-├── speech_qa.py           # Core QA system implementation
+ml_fiesta/
+├── whisper_project/
+│   ├── app.py                     # Streamlit frontend application
+│   ├── check_audio.py             # Audio file verification utility
+│   ├── efficient_loader.py        # Memory-efficient data loading
+│   ├── find_checkpoints.py        # Checkpoint management utility
+│   ├── main_train.py             # Main training script
+│   ├── model_eval.py             # Model evaluation script
+│   ├── organize_files.py         # File organization utility
+│   ├── questions.py              # Question handling
+│   ├── speech_q_a.py            # Speech QA implementation
+│   ├── test_audio.py            # Audio testing utility
+│   ├── test_loader.py           # DataLoader testing
+│   ├── test_whisper.py          # Whisper model testing
+│   ├── train.py                 # Training implementation
+│   └── whisper_fine_tuner.py    # Whisper model fine-tuning
 ├── data/
-│   └── audio/
-│       └── corpus/        # Audio corpus directory
-├── questions/             # Recorded questions directory
-├── checkpoints/           # Model checkpoints
-├── requirements.txt       # Project dependencies
-└── README.md             # Project documentation
+│   └── audio/                    # Audio dataset directory
+├── checkpoints/                  # Model checkpoints
+├── model_evaluation_results/     # Evaluation results
+├── questions/                    # Question audio files
+├── transcription_results/        # Transcription outputs
+└── whisper_env/                 # Python virtual environment
 ```
 
-## Installation
+## Setup and Installation
 
-1. Clone the repository:
+1. Create and activate virtual environment:
 ```bash
-git clone https://github.com/yourusername/sandalwood-qa.git
-cd sandalwood-qa
+python -m venv whisper_env
+source whisper_env/bin/activate  # Linux/Mac
+# or
+whisper_env\Scripts\activate     # Windows
 ```
 
 2. Install dependencies:
@@ -40,49 +46,77 @@ cd sandalwood-qa
 pip install -r requirements.txt
 ```
 
-3. Download model checkpoints (if using fine-tuned model):
-```bash
-# Add instructions for downloading checkpoints
-```
+## Features
+
+- **Fine-tuned Whisper ASR**: Customized for Kannada language
+- **Memory-Efficient Data Loading**: Optimized for large audio datasets
+- **Streamlit UI**: User-friendly interface for asking questions
+- **Real-time Audio Recording**: Direct question recording capability
+- **Audio Corpus Management**: Organized audio data handling
+- **Model Evaluation**: Comprehensive testing and evaluation tools
 
 ## Usage
 
-1. Start the Streamlit app:
+### Training the Model
 ```bash
-streamlit run app.py
+python whisper_project/main_train.py --audio_dir data/audio --model_name "openai/whisper-small"
 ```
 
-2. Use the system:
-   - Record questions directly through the microphone
-   - Upload pre-recorded questions
-   - View transcriptions and matching answers
-   - Play audio segments of answers
+### Starting the QA System
+```bash
+streamlit run whisper_project/app.py
+```
 
-## Tech Stack
+### Testing Audio Files
+```bash
+python whisper_project/check_audio.py
+```
 
-- Python 3.8+
+## Testing and Evaluation
+
+1. Check audio files:
+```bash
+python whisper_project/check_audio.py
+```
+
+2. Evaluate model:
+```bash
+python whisper_project/model_eval.py
+```
+
+3. Test data loading:
+```bash
+python whisper_project/test_loader.py
+```
+
+## Code Structure
+
+- `app.py`: Streamlit frontend interface
+- `whisper_fine_tuner.py`: Core fine-tuning implementation
+- `efficient_loader.py`: Memory-efficient data loading
+- `model_eval.py`: Model evaluation utilities
+- `test_*.py`: Various testing utilities
+- `organize_files.py`: File organization tools
+
+## Dependencies
+
 - PyTorch
-- Transformers (Whisper)
+- Transformers
 - Streamlit
-- scikit-learn
-- librosa
+- torchaudio
 - sounddevice
 - soundfile
+- librosa
+- scikit-learn
+- numpy
+- tqdm
 
-## Dataset
+## Model Details
 
-The system uses a corpus of audio files related to Sandalwood cultivation in Kannada language. The dataset includes:
-- Source: YouTube scraping
-- Language: Kannada
-- Content: Sandalwood cultivation techniques and knowledge
-- Format: MP3/WAV audio files
-
-## Model
-
-The system uses OpenAI's Whisper ASR model fine-tuned on Kannada language data:
-- Base model: whisper-small
-- Fine-tuning: Custom Kannada dataset
-- Task: Speech recognition and transcription
+- Base Model: OpenAI Whisper Small
+- Fine-tuned on: Kannada audio dataset
+- Task: Speech Recognition and Question-Answering
+- Domain: Sandalwood Cultivation Knowledge
 
 ## Contributing
 
@@ -92,14 +126,12 @@ The system uses OpenAI's Whisper ASR model fine-tuned on Kannada language data:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+
+
 ## Acknowledgments
 
-- Thanks to OpenAI for the Whisper model
-- Dataset contributors
-
-
-## Contact
-
-
-Project Link: https://github.com/saisreekantam/KANNADA_ASR_MODEL
+- OpenAI's Whisper model
+- MLFiesta project team
+- Sandalwood cultivation domain experts
+- Audio dataset contributors
 
